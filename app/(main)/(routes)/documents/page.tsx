@@ -8,17 +8,11 @@ import { handleName } from "../../_helpers/handleName";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
+import { handleCreateDocument } from "@/helpers/handleCreateDocument";
 const DocumentsPage = () => {
   const { user } = useUser();
   const create = useMutation(api.documents.create);
-  const onCreate = () => {
-    const promise = create({ title: "Untitled" });
-    toast.promise(promise, {
-      loading: "Creating document...",
-      success: "Document created!",
-      error: "Error creating document",
-    });
-  };
+
   return (
     <div className="h-full flex flex-col items-center justify-center space-y-4">
       <Image
@@ -38,7 +32,7 @@ const DocumentsPage = () => {
       <h2 className="text-lg font-medium">
         Welcome to {handleName(user)}&apos;s Jotion
       </h2>
-      <Button onClick={onCreate}>
+      <Button onClick={() => handleCreateDocument(create, "testingFian")}>
         <PlusCircle className="h-4 w-4 mr-2" />
         Create a note
       </Button>
