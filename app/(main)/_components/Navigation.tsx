@@ -7,10 +7,12 @@ import { useMediaQuery } from "usehooks-ts";
 import { resetWidth } from "../_helpers/navigation/resetWidth";
 import { collapse } from "../_helpers/navigation/collapse";
 import { UserItem } from "./UserList";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 const Navigation = () => {
   const pathName = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
-
+  const documents = useQuery(api.documents.get);
   const isResizingRef = React.useRef(false);
   const sidebarRef = React.useRef<ElementRef<"aside">>(null);
   const navbarRef = React.useRef<ElementRef<"div">>(null);
@@ -95,7 +97,9 @@ const Navigation = () => {
           <UserItem />
         </div>
         <div className="mt-4">
-          <p>Documents</p>
+          {documents?.map((document, index) => (
+            <p key={index}>{document.title}</p>
+          ))}
         </div>
         <div
           onMouseDown={handleMouseDown}
