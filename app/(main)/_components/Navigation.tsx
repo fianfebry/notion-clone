@@ -6,6 +6,7 @@ import React, { ElementRef } from "react";
 import { useMediaQuery } from "usehooks-ts";
 import { resetWidth } from "../_helpers/navigation/resetWidth";
 import { collapse } from "../_helpers/navigation/collapse";
+import { UserItem } from "./UserList";
 const Navigation = () => {
   const pathName = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -91,7 +92,7 @@ const Navigation = () => {
           <ChevronsLeft className="w-6 h-6" />
         </div>
         <div>
-          <p>Actions items</p>
+          <UserItem />
         </div>
         <div className="mt-4">
           <p>Documents</p>
