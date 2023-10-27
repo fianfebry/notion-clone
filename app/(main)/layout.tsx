@@ -4,7 +4,8 @@ import { Spinner } from "@/components/spinner";
 import { useConvexAuth } from "convex/react";
 import { redirect } from "next/navigation";
 import React, { ReactNode } from "react";
-import Navigation from "../_components/Navigation";
+import Navigation from "./_components/Navigation";
+import { SearchCommand } from "@/components/modals/SearchCommand";
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
   // this is a protected layout
@@ -22,7 +23,10 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="h-full flex dark:bg-[#1F1F1F]">
       <Navigation />
-      <main className="flex-1 h-full overflow-y-auto">{children}</main>
+      <main className="flex-1 h-full overflow-y-auto">
+        <SearchCommand />
+        {children}
+      </main>
     </div>
   );
 };
